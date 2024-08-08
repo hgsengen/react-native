@@ -4,7 +4,7 @@
  * This source code is licensed under the MIT license found in the
  * LICENSE file in the root directory of this source tree.
  *
- * @generated SignedSource<<a3dcd2d00c25e85277416a43a1a27b1c>>
+ * @generated SignedSource<<6896ec018143f40b7d08487fb10239d7>>
  * @flow strict-local
  */
 
@@ -36,6 +36,7 @@ export type ReactNativeFeatureFlagsJsOnly = {
   shouldUseRemoveClippedSubviewsAsDefaultOnIOS: Getter<boolean>,
   shouldUseSetNativePropsInFabric: Getter<boolean>,
   shouldUseSetNativePropsInNativeAnimationsInFabric: Getter<boolean>,
+  usePassiveEffectsForAnimations: Getter<boolean>,
   useRefsForTextInputState: Getter<boolean>,
 };
 
@@ -44,7 +45,6 @@ export type ReactNativeFeatureFlagsJsOnlyOverrides = Partial<ReactNativeFeatureF
 export type ReactNativeFeatureFlags = {
   ...ReactNativeFeatureFlagsJsOnly,
   commonTestFlag: Getter<boolean>,
-  allowCollapsableChildren: Getter<boolean>,
   allowRecursiveCommitsWithSynchronousMountOnAndroid: Getter<boolean>,
   batchRenderingUpdatesInEventLoop: Getter<boolean>,
   changeOrderOfMountingInstructionsOnAndroid: Getter<boolean>,
@@ -140,6 +140,11 @@ export const shouldUseSetNativePropsInFabric: Getter<boolean> = createJavaScript
 export const shouldUseSetNativePropsInNativeAnimationsInFabric: Getter<boolean> = createJavaScriptFlagGetter('shouldUseSetNativePropsInNativeAnimationsInFabric', false);
 
 /**
+ * Enable a variant of useAnimatedPropsLifecycle hook that constructs the animation graph in passive effect instead of layout effect
+ */
+export const usePassiveEffectsForAnimations: Getter<boolean> = createJavaScriptFlagGetter('usePassiveEffectsForAnimations', false);
+
+/**
  * Enable a variant of TextInput that moves some state to refs to avoid unnecessary re-renders
  */
 export const useRefsForTextInputState: Getter<boolean> = createJavaScriptFlagGetter('useRefsForTextInputState', false);
@@ -148,10 +153,6 @@ export const useRefsForTextInputState: Getter<boolean> = createJavaScriptFlagGet
  * Common flag for testing. Do NOT modify.
  */
 export const commonTestFlag: Getter<boolean> = createNativeFlagGetter('commonTestFlag', false);
-/**
- * Enables the differentiator to understand the "collapsableChildren" prop
- */
-export const allowCollapsableChildren: Getter<boolean> = createNativeFlagGetter('allowCollapsableChildren', true);
 /**
  * Adds support for recursively processing commits that mount synchronously (Android only).
  */

@@ -1253,6 +1253,7 @@ public class com/facebook/react/bridge/ReactInstanceManagerInspectorTarget : jav
 
 public abstract interface class com/facebook/react/bridge/ReactInstanceManagerInspectorTarget$TargetDelegate {
 	public abstract fun getMetadata ()Ljava/util/Map;
+	public abstract fun loadNetworkResource (Ljava/lang/String;Lcom/facebook/react/devsupport/inspector/InspectorNetworkRequestListener;)V
 	public abstract fun onReload ()V
 	public abstract fun onSetPausedInDebuggerMessage (Ljava/lang/String;)V
 }
@@ -2069,7 +2070,6 @@ public final class com/facebook/react/defaults/DefaultNewArchitectureEntryPoint 
 	public static final fun load (ZZ)V
 	public static final fun load (ZZZ)V
 	public static synthetic fun load$default (ZZZILjava/lang/Object;)V
-	public static final fun unstable_loadFusebox (Z)V
 }
 
 public class com/facebook/react/defaults/DefaultReactActivityDelegate : com/facebook/react/ReactActivityDelegate {
@@ -2447,6 +2447,18 @@ public abstract interface class com/facebook/react/devsupport/WebsocketJavaScrip
 
 public class com/facebook/react/devsupport/WebsocketJavaScriptExecutor$WebsocketExecutorTimeoutException : java/lang/Exception {
 	public fun <init> (Ljava/lang/String;)V
+}
+
+public class com/facebook/react/devsupport/inspector/InspectorNetworkHelper {
+	public static fun loadNetworkResource (Ljava/lang/String;Lcom/facebook/react/devsupport/inspector/InspectorNetworkRequestListener;)V
+}
+
+public class com/facebook/react/devsupport/inspector/InspectorNetworkRequestListener {
+	public fun <init> (Lcom/facebook/jni/HybridData;)V
+	public fun onCompletion ()V
+	public fun onData (Ljava/lang/String;)V
+	public fun onError (Ljava/lang/String;)V
+	public fun onHeaders (ILjava/util/Map;)V
 }
 
 public abstract interface class com/facebook/react/devsupport/interfaces/BundleLoadCallback {
@@ -7334,6 +7346,7 @@ public final class com/facebook/react/views/scroll/ScrollEventType$Companion {
 
 public class com/facebook/react/views/swiperefresh/ReactSwipeRefreshLayout : androidx/swiperefreshlayout/widget/SwipeRefreshLayout {
 	public fun <init> (Lcom/facebook/react/bridge/ReactContext;)V
+	public fun canChildScrollUp ()Z
 	public fun onInterceptTouchEvent (Landroid/view/MotionEvent;)Z
 	public fun onLayout (ZIIII)V
 	public fun onTouchEvent (Landroid/view/MotionEvent;)Z

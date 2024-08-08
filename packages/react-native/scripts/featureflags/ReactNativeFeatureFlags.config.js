@@ -39,11 +39,6 @@ const testDefinitions: FeatureFlagDefinitions = {
 const definitions: FeatureFlagDefinitions = {
   common: {
     ...testDefinitions.common,
-    allowCollapsableChildren: {
-      defaultValue: true,
-      description:
-        'Enables the differentiator to understand the "collapsableChildren" prop',
-    },
     allowRecursiveCommitsWithSynchronousMountOnAndroid: {
       defaultValue: false,
       description:
@@ -299,6 +294,11 @@ const definitions: FeatureFlagDefinitions = {
       defaultValue: false,
       description:
         'Enables use of setNativeProps in Native driven animations in Fabric.',
+    },
+    usePassiveEffectsForAnimations: {
+      defaultValue: false,
+      description:
+        'Enable a variant of useAnimatedPropsLifecycle hook that constructs the animation graph in passive effect instead of layout effect',
     },
     useRefsForTextInputState: {
       defaultValue: false,

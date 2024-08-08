@@ -240,7 +240,7 @@ public class ReactViewGroup extends ViewGroup
     getOrCreateReactViewBackground().setGradients(gradient);
   }
 
-  @Deprecated(since = "0.66.0", forRemoval = true)
+  @Deprecated(since = "0.76.0", forRemoval = true)
   public void setTranslucentBackgroundDrawable(@Nullable Drawable background) {
     if (ReactNativeFeatureFlags.enableBackgroundStyleApplicator()) {
       BackgroundStyleApplicator.setFeedbackUnderlay(this, background);
@@ -865,7 +865,13 @@ public class ReactViewGroup extends ViewGroup
   }
 
   public void setOverflow(@Nullable String overflow) {
-    mOverflow = overflow == null ? Overflow.VISIBLE : Overflow.fromString(overflow);
+    if (overflow == null) {
+      mOverflow = Overflow.VISIBLE;
+    } else {
+      @Nullable Overflow parsedOverflow = Overflow.fromString(overflow);
+      mOverflow = parsedOverflow == null ? Overflow.VISIBLE : parsedOverflow;
+    }
+
     invalidate();
   }
 
